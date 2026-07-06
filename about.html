@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 · 力滋漫谈</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans SC', sans-serif; color: #2d3748; background: #fff; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw; height: 64px;
+      background: rgba(15,31,61,0.96); backdrop-filter: blur(8px);
+    }
+    .logo-wrap { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+    .logo-sub { font-size: .55rem; letter-spacing: .2em; color: rgba(255,255,255,.4); display: block; margin-top: .15rem; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: .875rem; transition: color .2s; }
+    nav ul a:hover, nav ul a.active { color: #2eb87a; }
+
+    .hero {
+      background: linear-gradient(160deg, #0f1f3d, #1a3566);
+      padding: 120px 6vw 60px; text-align: center;
+    }
+    .hero h1 { font-family: 'Noto Serif SC', serif; font-size: 2.5rem; color: white; margin-bottom: 1rem; }
+    .hero p { color: rgba(255,255,255,.6); font-size: 1rem; }
+
+    .content { max-width: 800px; margin: 0 auto; padding: 5rem 6vw; }
+    .block { margin-bottom: 3rem; }
+    .block h2 { font-family: 'Noto Serif SC', serif; font-size: 1.5rem; color: #0f1f3d; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid #e8f4f0; }
+    .block p { font-size: 1rem; line-height: 1.9; margin-bottom: 1rem; color: #2d3748; }
+
+    .values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem; }
+    .value { background: #e8f4f0; padding: 1.5rem; border-radius: 4px; text-align: center; }
+    .value .icon { font-size: 2rem; margin-bottom: .5rem; }
+    .value h3 { font-size: 1rem; color: #0f1f3d; margin-bottom: .3rem; }
+    .value p { font-size: .85rem; color: #718096; }
+
+    .contact {
+      background: #0f1f3d; padding: 3rem;
+      text-align: center; border-radius: 4px; margin-top: 3rem;
+    }
+    .contact h2 { font-family: 'Noto Serif SC', serif; color: white; font-size: 1.5rem; margin-bottom: 1rem; }
+    .contact p { color: rgba(255,255,255,.6); margin-bottom: 1.5rem; }
+    .contact a {
+      display: inline-block; padding: .75rem 2rem;
+      background: #2eb87a; color: white;
+      text-decoration: none; border-radius: 2px;
+    }
+
+    footer { background: #080f1e; color: rgba(255,255,255,.35); text-align: center; padding: 2rem; font-size: .8rem; }
+    footer span { color: #2eb87a; }
+
+    @media (max-width: 600px) { nav ul { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-wrap">
+    <svg class="logo-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 3 C28 3 33 10 33 18 C33 26 28 33 18 33 C8 33 3 26 3 18 C3 10 8 3 18 3 Z"
+            fill="#0f2a4a" stroke="#2eb87a" stroke-width="1.2"/>
+      <path d="M18 8 Q22 13 22 18 Q22 23 18 28 Q14 23 14 18 Q14 13 18 8 Z"
+            fill="none" stroke="rgba(46,184,122,0.25)" stroke-width="1"/>
+      <polyline
+        points="5,18 10,18 12,18 13.5,12 15,24 16.5,14 18,22 19.5,18 26,18 31,18"
+        stroke="#e63946" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="18" cy="18" r="1.5" fill="#e63946"/>
+    </svg>
+    <div>
+      <div style="font-family:'Ma Shan Zheng',cursive; font-size:1.35rem; color:white; letter-spacing:.15em; line-height:1;">
+        力滋<span style="color:#2eb87a;">漫谈</span>
+      </div>
+      <span class="logo-sub">大众健康科普</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="index.html">首页</a></li>
+    <li><a href="topics.html">话题</a></li>
+    <li><a href="articles.html">精选文章</a></li>
+    <li><a href="about.html" class="active">关于我们</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <h1>关于力滋漫谈</h1>
+  <p>为什么要做这件事，我们是谁，我们相信什么</p>
+</div>
+
+<div class="content">
+
+  <div class="block">
+    <h2>我们的初心</h2>
+    <p>看病难、看懂更难。很多人拿着化验单不知所措，或者被网络上的健康谣言带着跑。医生每次看诊时间有限，很多重要的事情来不及细说。</p>
+    <p>力滋漫谈的目标只有一个：让普通人在就医前后，都能读懂自己的身体。</p>
+  </div>
+
+  <div class="block">
+    <h2>我们的原则</h2>
+    <div class="values">
+      <div class="value">
+        <div class="icon">🔬</div>
+        <h3>循证医学</h3>
+        <p>所有内容基于可靠的医学研究，不传播未经证实的信息。</p>
+      </div>
+      <div class="value">
+        <div class="icon">💚</div>
+        <h3>不卖焦虑</h3>
+        <p>健康信息应该让人安心，而不是制造恐慌。</p>
+      </div>
+      <div class="value">
+        <div class="icon">🚫</div>
+        <h3>不推销产品</h3>
+        <p>我们不接受商业赞助，不推荐任何保健品。</p>
+      </div>
+      <div class="value">
+        <div class="icon">📖</div>
+        <h3>通俗易懂</h3>
+        <p>用普通人能读懂的语言写作。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>重要声明</h2>
+    <p>力滋漫谈的所有内容仅供科普参考，不构成医疗建议。如有健康问题，请务必咨询专业医生。</p>
+  </div>
+
+  <div class="contact">
+    <h2>联系我们</h2>
+    <p>有问题想问？有话题想建议？欢迎来信。</p>
+    <a href="mailto:hello@lizimant.com">✉ 发送邮件</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <span>力滋漫谈</span> · 本站内容仅供科普参考，不构成医疗建议</p>
+</footer>
+
+</body>
+</html>
+

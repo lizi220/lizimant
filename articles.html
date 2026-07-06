@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>精选文章 · 力滋漫谈</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0f1f3d; --accent: #2eb87a; --pale: #e8f4f0;
+      --white: #ffffff; --text: #2d3748; --muted: #718096;
+    }
+    body { font-family: 'Noto Sans SC', sans-serif; color: var(--text); background: var(--white); }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw; height: 64px;
+      background: rgba(15,31,61,0.96); backdrop-filter: blur(8px);
+    }
+    .logo-wrap { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .logo-svg { width: 36px; height: 36px; }
+    .logo-sub { font-size: .55rem; letter-spacing: .2em; color: rgba(255,255,255,.4); display: block; margin-top: .15rem; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: .875rem; transition: color .2s; }
+    nav ul a:hover, nav ul a.active { color: var(--accent); }
+
+    .page-hero {
+      background: linear-gradient(160deg, #0f1f3d 0%, #1a3566 100%);
+      padding: 120px 6vw 60px; text-align: center;
+    }
+    .page-hero h1 { font-family: 'Noto Serif SC', serif; font-size: clamp(1.8rem,4vw,3rem); color: white; margin-bottom: 1rem; }
+    .page-hero p { color: rgba(255,255,255,.6); font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+
+    .articles-section { padding: 5rem 6vw; max-width: 900px; margin: 0 auto; }
+
+    .filter-bar { display: flex; gap: .75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .filter-btn {
+      padding: .4rem 1rem; border: 1.5px solid #e2e8f0;
+      border-radius: 2px; background: white; cursor: pointer;
+      font-size: .85rem; font-family: 'Noto Sans SC', sans-serif;
+      transition: all .2s; color: var(--muted);
+    }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent); color: var(--accent); }
+
+    .article-list { display: grid; gap: 1.5rem; }
+    .article-card {
+      background: white; border: 1.5px solid #e2e8f0;
+      border-radius: 4px; padding: 2rem;
+      transition: all .2s; cursor: pointer;
+    }
+    .article-card:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(46,184,122,.1); transform: translateY(-3px); }
+    .article-meta { display: flex; gap: 1rem; align-items: center; margin-bottom: .75rem; }
+    .article-tag {
+      font-size: .7rem; letter-spacing: .15em;
+      background: var(--pale); color: var(--accent);
+      padding: .2rem .6rem; border-radius: 2px;
+    }
+    .article-date { font-size: .8rem; color: var(--muted); }
+    .article-card h3 { font-family: 'Noto Serif SC', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: .5rem; line-height: 1.4; }
+    .article-card p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+    .article-footer { margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .read-more { font-size: .85rem; color: var(--accent); text-decoration: none; }
+    .read-time { font-size: .8rem; color: var(--muted); }
+
+    footer { background: #080f1e; color: rgba(255,255,255,.35); text-align: center; padding: 2rem 6vw; font-size: .8rem; }
+    footer span { color: var(--accent); }
+
+    @media (max-width: 600px) { nav ul { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-wrap">
+    <svg class="logo-svg" viewBox="0 0 36 36" fill="none">
+      <path d="M18 3 C28 3 33 10 33 18 C33 26 28 33 18 33 C8 33 3 26 3 18 C3 10 8 3 18 3 Z" fill="#0f2a4a" stroke="#2eb87a" stroke-width="1.2"/>
+      <path d="M18 8 Q22 13 22 18 Q22 23 18 28 Q14 23 14 18 Q14 13 18 8 Z" fill="none" stroke="rgba(46,184,122,0.25)" stroke-width="1"/>
+      <polyline points="5,18 10,18 12,18 13.5,12 15,24 16.5,14 18,22 19.5,18 26,18 31,18" stroke="#e63946" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="18" cy="18" r="1.5" fill="#e63946"/>
+    </svg>
+    <div>
+      <div style="font-family:'Ma Shan Zheng',cursive; font-size:1.35rem; color:white; letter-spacing:.15em;">力滋<span style="color:#2eb87a;">漫谈</span></div>
+      <span class="logo-sub">大众健康科普</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="index.html">首页</a></li>
+    <li><a href="topics.html">话题</a></li>
+    <li><a href="articles.html" class="active">精选文章</a></li>
+    <li><a href="about.html">关于我们</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <h1>精选文章</h1>
+  <p>每篇文章经过仔细核查，引用可靠医学来源，不卖焦虑，只讲事实</p>
+</div>
+
+<section class="articles-section">
+  <div class="filter-bar">
+    <button class="filter-btn active">全部</button>
+    <button class="filter-btn">心血管</button>
+    <button class="filter-btn">体检解读</button>
+    <button class="filter-btn">营养</button>
+    <button class="filter-btn">大脑与睡眠</button>
+    <button class="filter-btn">用药常识</button>
+  </div>
+
+  <div class="article-list">
+    <div class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">心血管</span>
+        <span class="article-date">2026年6月</span>
+      </div>
+      <h3>血压 130/80，算高血压吗？新旧标准为何不同</h3>
+      <p>中国与美国的高血压诊断标准有差异，背后的逻辑和对你的实际影响是什么。很多人拿到体检报告看到血压偏高就开始紧张，其实了解标准背后的原因比数字本身更重要。</p>
+      <div class="article-footer">
+        <a href="#" class="read-more">阅读全文 →</a>
+        <span class="read-time">阅读约 5 分钟</span>
+      </div>
+    </div>
+
+    <div class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">体检解读</span>
+        <span class="article-date">2026年6月</span>
+      </div>
+      <h3>转氨酶偏高就是肝有问题吗？先别慌</h3>
+      <p>ALT、AST 升高的常见原因，哪些需要复查，哪些根本不用在意。转氨酶升高不一定代表肝脏出问题，很多日常因素都会影响这个数值。</p>
+      <div class="article-footer">
+        <a href="#" class="read-more">阅读全文 →</a>
+        <span class="read-time">阅读约 4 分钟</span>
+      </div>
+    </div>
+
+    <div class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">营养</span>
+        <span class="article-date">2026年5月</span>
+      </div>
+      <h3>维生素 D 补多少才够？大多数人都补错了</h3>
+      <p>日晒、食物与补剂的关系，以及不同年龄段的推荐摄入量详解。维生素D缺乏在中国非常普遍，但补充方式和剂量很多人都没有搞清楚。</p>
+      <div class="article-footer">
+        <a href="#" class="read-more">阅读全文 →</a>
+        <span class="read-time">阅读约 6 分钟</span>
+      </div>
+    </div>
+
+    <div class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">大脑与睡眠</span>
+        <span class="article-date">2026年5月</span>
+      </div>
+      <h3>睡前刷手机真的会伤眼睛和大脑吗？科学怎么说</h3>
+      <p>蓝光、褪黑素与睡眠质量的真实关系，以及哪些习惯值得改变。关于蓝光的说法很多，有些是真的，有些被过度渲染了。</p>
+      <div class="article-footer">
+        <a href="#" class="read-more">阅读全文 →</a>
+        <span class="read-time">阅读约 5 分钟</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>力滋漫谈</span> · 本站内容仅供科普参考，不构成医疗建议</p>
+</footer>
