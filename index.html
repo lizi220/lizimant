@@ -173,6 +173,22 @@
       .nl-form input { width: 100%; }
     }
   </style>
+
+<style>
+  .lz-shorts{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+  .lz-card{position:relative;width:240px;aspect-ratio:9/16;border:none;border-radius:16px;overflow:hidden;cursor:pointer;padding:0;background:#0f1f3d;box-shadow:0 8px 28px rgba(15,31,61,.18);}
+  .lz-card img{width:100%;height:100%;object-fit:cover;display:block;}
+  .lz-card-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(46,184,122,.92);color:#fff;font-size:1.3rem;display:flex;align-items:center;justify-content:center;}
+  .lz-card-meta{position:absolute;left:0;right:0;bottom:0;padding:2rem .9rem .9rem;text-align:left;color:#fff;background:linear-gradient(transparent,rgba(15,31,61,.85));display:block;}
+  .lz-card-meta strong{display:block;font-size:1.05rem;}
+  .lz-card-meta em{font-style:normal;font-size:.78rem;opacity:.85;}
+  .lz-modal{position:fixed;inset:0;z-index:400;background:rgba(10,18,35,.88);display:none;align-items:center;justify-content:center;}
+  .lz-modal.open{display:flex;}
+  .lz-modal-box{width:min(420px,92vw);}
+  .lz-modal-title{color:#fff;text-align:center;margin-bottom:.75rem;font-size:1rem;}
+  .lz-modal video{width:100%;aspect-ratio:9/16;max-height:78vh;border-radius:14px;background:#000;display:block;}
+  .lz-modal-close{display:block;margin:.9rem auto 0;background:#2eb87a;color:#fff;border:none;border-radius:4px;padding:.55rem 2rem;font-size:.95rem;cursor:pointer;}
+</style>
 </head>
 <body>
 
@@ -252,18 +268,33 @@
   <p style="font-size:.75rem; letter-spacing:.3em; text-transform:uppercase; color:#2eb87a; margin-bottom:.75rem;">力滋医生说</p>
   <h2 style="font-family:'Noto Serif SC',serif; font-size:clamp(1.4rem,3vw,2rem); color:#0f1f3d; margin-bottom:2rem;">听医生说那些诊室里说不完的话</h2>
   <div style="display:flex; justify-content:center;">
-    <div style="width:500px; height:340px; border-radius:50%; overflow:hidden; box-shadow:0 8px 32px rgba(15,31,61,0.15); margin:0 auto;">
-      <iframe
-        src="https://drive.google.com/file/d/1OEEfQttpyNgd-rSahtDeRFH6m65NINKp/preview"
-        width="500"
-        height="340"
-        frameborder="0"
-        allowfullscreen
-        style="display:block;">
-      </iframe>
+    <div style="width:min(880px,100%); aspect-ratio:16/9; border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(15,31,61,0.15); margin:0 auto; background:#000;">
+      <video controls preload="none" playsinline poster="assets/lizi-intro-poster.jpg" style="display:block; width:100%; height:100%;">
+        <source src="assets/lizi-intro.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+      </video>
     </div>
   </div>
   <p style="margin-top:1.5rem; font-size:.875rem; color:#718096;">我是LiZi医生，欢迎关注力滋漫谈</p>
+</section>
+
+<!-- SHORTS SECTION -->
+<section style="background:#ffffff; padding:3rem 6vw; text-align:center;">
+  <p style="font-size:.75rem; letter-spacing:.3em; text-transform:uppercase; color:#2eb87a; margin-bottom:.75rem;">力滋短视频</p>
+  <h2 style="font-family:'Noto Serif SC',serif; font-size:clamp(1.4rem,3vw,2rem); color:#0f1f3d; margin-bottom:.5rem;">二十四节气 · 养生短视频</h2>
+  <p style="font-size:.875rem; color:#718096; margin-bottom:2rem;">点击任意一张卡片，竖屏完整播放，不裁切。</p>
+  <div class="lz-shorts">
+    <button type="button" class="lz-card" onclick="lzPlay('assets/shuangjiang.mp4','霜降 · 这3种人最容易中招')">
+      <img src="assets/shuangjiang-poster.jpg" alt="霜降养生短视频封面">
+      <span class="lz-card-play">▶</span>
+      <span class="lz-card-meta"><strong>霜降</strong><em>这3种人最容易中招 · 0:59</em></span>
+    </button>
+    <button type="button" class="lz-card" onclick="lzPlay('assets/qiudong-yangsheng.mp4','秋冬养生 · 3个要点')">
+      <img src="assets/qiudong-poster.jpg" alt="秋冬养生短视频封面">
+      <span class="lz-card-play">▶</span>
+      <span class="lz-card-meta"><strong>秋冬养生</strong><em>润肺防燥 / 早睡养阴 / 温润饮食 · 0:49</em></span>
+    </button>
+  </div>
 </section>
 
 <!-- PROFILE (shown when logged in) -->
@@ -522,6 +553,26 @@
 
   // ── Init ──
   loadComments();
+</script>
+
+<div class="lz-modal" id="lz-modal" onclick="if(event.target===this)lzClose()">
+  <div class="lz-modal-box">
+    <p class="lz-modal-title" id="lz-modal-title"></p>
+    <video id="lz-modal-video" controls playsinline></video>
+    <button type="button" class="lz-modal-close" onclick="lzClose()">关闭</button>
+  </div>
+</div>
+<script>
+  function lzPlay(src, title){
+    var m=document.getElementById('lz-modal'), v=document.getElementById('lz-modal-video');
+    document.getElementById('lz-modal-title').textContent=title;
+    v.src=src; m.classList.add('open'); v.play();
+  }
+  function lzClose(){
+    var m=document.getElementById('lz-modal'), v=document.getElementById('lz-modal-video');
+    v.pause(); v.removeAttribute('src'); v.load(); m.classList.remove('open');
+  }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') lzClose(); });
 </script>
 </body>
 </html>
